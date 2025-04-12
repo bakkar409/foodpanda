@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #36D1DC, #5B86E5);
+        }
+
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #5B86E5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #4a76d4;
+        }
+
+        .forgot-password {
+            display: inline;
+            margin-top: 10px;
+            color: #5B86E5;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Enter your Email">
+        <input type="password" id="password" placeholder="Enter your Password">
+        <a href="#" class="forgot-password" id="forgotPassword">Forgot Password?</a>&nbsp;&nbsp;&nbsp;
+        <a href="index.html">Go to Signup</a><br><br>
+
+        <button id="loginBtn">Login</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBg-HX19Is0gfd6mETCsiW_zL4WUotct1I",
+            authDomain: "my-app-cfee2.firebaseapp.com",
+            projectId: "my-app-cfee2",
+            storageBucket: "my-app-cfee2.firebasestorage.app",
+            messagingSenderId: "87560736208",
+            appId: "1:87560736208:web:b797febd7a61eafd5dbdd5",
+            measurementId: "G-BWG41E5QLQ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        document.getElementById("loginBtn").addEventListener("click", function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(userCredential => {
+                    alert("Login Successful!");
+                    localStorage.setItem("userEmail", userCredential.user.email);
+                    window.location.href = "welcome.html";
+                })
+                .catch(error => {
+                    alert("Error: " + error.message);
+                });
+        });
+
+        document.getElementById("forgotPassword").addEventListener("click", function () {
+            const email = document.getElementById("email").value;
+            if (!email) {
+                alert("Please enter your email first.");
+                return;
+            }
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    alert(`Password reset email sent to ${email}! Check your inbox.`);
+                })
+                .catch(error => {
+                    alert("Error: " + error.message);
+                });
+        });
+
+    </script>
+</body>
+
+</html>
