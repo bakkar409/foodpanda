@@ -3,16 +3,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebas
 import { getAuth, createUserWithEmailAndPassword,  signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBg-HX19Is0gfd6mETCsiW_zL4WUotct1I",
-  authDomain: "my-app-cfee2.firebaseapp.com",
-  projectId: "my-app-cfee2",
-  storageBucket: "my-app-cfee2.firebasestorage.app",
-  messagingSenderId: "87560736208",
-  appId: "1:87560736208:web:b797febd7a61eafd5dbdd5",
-  measurementId: "G-BWG41E5QLQ"
-};
+    apiKey: "AIzaSyDTabp2Dfv--RhHO6L-4hbxdb35HbuAxd8",
+    authDomain: "bakkar-jr.firebaseapp.com",
+    projectId: "bakkar-jr",
+    storageBucket: "bakkar-jr.firebasestorage.app",
+    messagingSenderId: "89884942656",
+    appId: "1:89884942656:web:7005bafaa4cc211eb35aa5",
+    measurementId: "G-RETWEG4PT8"
+  };
 
 const app = initializeApp(firebaseConfig);
 
